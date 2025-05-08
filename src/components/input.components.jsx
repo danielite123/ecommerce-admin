@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const InputBox = ({
+export const InputBox = ({
   name,
   type,
   id,
@@ -23,7 +23,7 @@ const InputBox = ({
           defaultValue={value}
           id={id}
           disabled={disable}
-          className="input-box font-inter"
+          className={`input-box font-inter ${error ? "border-red-500" : ""}`}
         />
         {icon && <i className={"fi " + icon + " input-icon"}></i>}
       </div>
@@ -51,4 +51,29 @@ const InputBox = ({
   );
 };
 
-export default InputBox;
+export const SearchInputBox = ({
+  name,
+  type,
+  id,
+  value,
+  placeholder,
+  icon,
+  disable,
+}) => {
+  return (
+    <div className="relative w-[100%] mb-4 mt-1">
+      <div className="relative">
+        <input
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          defaultValue={value}
+          id={id}
+          disabled={disable}
+          className="search-input-box font-inter"
+        />
+        {icon && <i className={"fi " + icon + " search-input-icon"}></i>}
+      </div>
+    </div>
+  );
+};

@@ -1,4 +1,4 @@
-import InputBox from "../../components/input.components";
+import { InputBox } from "../../components/input.components";
 import GoogleLogo from "../../img/google.png";
 import FaceebookLogo from "../../img/facebook.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -82,8 +82,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex overflow-hidden flex-row">
-      <div className="w-[50%] h-screen bg-blue-700 max-sm:hidden">
+    <div className="min-h-screen flex overflow-hidden flex-col md:flex-row">
+      <div className="hidden md:flex flex-col justify-between w-[50%] h-screen bg-blue-700">
         <div className=" flex flex-row items-center gap-2 pl-10 py-5">
           <div className="flex flex-row items-center relative">
             <div className="w-6 h-6  bg-white rounded-md"></div>
@@ -122,11 +122,19 @@ const LoginPage = () => {
             </div>
           </div>
         </div>
+
+        <div className="flex flex-col items-center justify-center text-center mt-5 mb-10">
+          <h1 className="font-inter font-bold text-white text-[18px] max-md:text-[14px]">
+            Customizable Multipurpose Dashboard
+          </h1>
+          <p className="text-[12px] text-white font-inter mt-2 max-md:text-[8px]">
+            Everything you need in an easily customizable dashboard.
+          </p>
+        </div>
       </div>
 
-      <div className="w-full sm:w-[50%] h-screen flex flex-col max-sm:pt-6 px-4 relative">
-        {/* Logo - Small Screens Only */}
-        <div className="sm:hidden absolute top-6 left-4 flex flex-row items-center gap-2 pl-10">
+      <div className="w-full md:w-1/2 min-h-screen flex flex-col px-4 max-md:pb-10 relative">
+        <div className="md:hidden py-4 flex flex-row items-center gap-2">
           <div className="flex flex-row items-center relative">
             <div className="w-6 h-6  bg-blue-700 rounded-md"></div>
             <i className="fi fi-sr-bolt text-white absolute left-1 top-0.5"></i>
@@ -136,14 +144,18 @@ const LoginPage = () => {
           </h1>
         </div>
 
-        <div className="flex flex-col justify-center items-center h-full -mt-8 pt-0.5">
-          <form id="formElement" onSubmit={handleSubmit}>
-            <div className="h-full max-sm:w-[350px] max-md:w-[300px] max-lg:w-[350px] w-[350px] flex flex-col justify-center px-1">
-              <h1 className="text-black font-inter font-bold text-x pb-3">
+        <div className="flex flex-col flex-grow md:justify-center md:items-center">
+          <form
+            id="formElement"
+            onSubmit={handleSubmit}
+            className="w-full max-w-md mx-auto my-4"
+          >
+            <div className="w-full flex flex-col justify-center px-1">
+              <h1 className="text-black font-inter font-bold text-x pb-3 text-left">
                 Sign In For An Account
               </h1>
 
-              <p className="text-gray-400 font-inter text-[12px] pb-5">
+              <p className="text-gray-400 font-inter text-[12px] max-sm:pb-5 text-left">
                 Welcome back! please enter your detail
               </p>
 
@@ -165,7 +177,7 @@ const LoginPage = () => {
                 />
               </div>
 
-              <div className="flex flex-row items-center justify-between w-full -mt-1 ">
+              <div className="flex flex-row items-center justify-between w-full -mt-1">
                 <div className="flex flex-row gap-2">
                   <label className="ios-checkbox blue mt-0.5">
                     <input type="checkbox" />
@@ -202,40 +214,56 @@ const LoginPage = () => {
                 </p>
               </div>
 
-              <button className="button mt-6 mb-1 text-[12px] font-inter">
+              <button className="button mt-6 mb-1 text-[12px] font-inter w-full">
                 Sign In
               </button>
 
-              <div className="relative w-full flex items-center gap-2 my-5 ">
-                <hr className="w-1/2  border-black opacity-10 -mr-5" />
-                <p className="text-[12px] text-gray-500 w-[200px] flex justify-center">
+              <div className="relative w-full flex items-center gap-2 my-5">
+                <hr className="w-1/2 border-black opacity-10" />
+                <p className="text-[12px] text-gray-500 w-auto px-2">
                   Or sign in with
                 </p>
-                <hr className="w-1/2 border-black opacity-10 -ml-5" />
+                <hr className="w-1/2 border-black opacity-10" />
               </div>
 
-              <div className="w-full flex flex-row items-center justify-center gap-4">
-                <button className="w-1/2 border border-gray-300 flex flex-row items-center justify-center px-12 py-3.5 rounded-lg gap-2 cursor-pointer">
-                  <img src={GoogleLogo} className="h-3.5 w-3.5" />
+              <div className="w-full flex flex-row max-md:flex-col items-center justify-center gap-4">
+                <button
+                  type="button"
+                  className="w-1/2 max-md:w-full border border-gray-300 flex flex-row items-center justify-center px-4 py-3.5 rounded-lg gap-2 cursor-pointer"
+                >
+                  <img src={GoogleLogo} className="h-3.5 w-3.5" alt="Google" />
                   <p className="font-inter text-[12px] font-semibold">Google</p>
                 </button>
 
-                <button className=" w-1/2 border border-gray-300 flex flex-row items-center justify-center px-10 py-3.5 rounded-lg gap-2 cursor-pointer">
-                  <img src={FaceebookLogo} className="h-3.5 w-3.5" />
+                <button
+                  type="button"
+                  className="w-1/2 max-md:w-full border border-gray-300 flex flex-row items-center justify-center px-4 py-3.5 rounded-lg gap-2 cursor-pointer"
+                >
+                  <img
+                    src={FaceebookLogo}
+                    className="h-3.5 w-3.5"
+                    alt="Facebook"
+                  />
                   <p className="font-inter text-[12px] font-semibold">
-                    Faceebook
+                    Facebook
                   </p>
                 </button>
               </div>
 
-              <p className="text-[12px] font-inter flex justify-center mt-6">
-                Don’t have an account?{" "}
+              <p className="text-[12px] font-inter flex justify-center mt-6 max-md:hidden">
+                Don't have an account?{" "}
                 <span className="text-blue-600 font-semibold ml-1">
                   <Link to="/register">Sign Up</Link>
                 </span>
               </p>
             </div>
           </form>
+          <p className="text-[12px] font-inter flex justify-center mb-4 mt-auto min-md:hidden">
+            Don't have an account?{" "}
+            <span className="text-blue-600 font-semibold ml-1">
+              <Link to="/register">Sign Up</Link>
+            </span>
+          </p>
         </div>
       </div>
     </div>

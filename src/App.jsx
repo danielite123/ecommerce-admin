@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/navbar.component";
 import LoginPage from "./pages/auth/login.page";
 import RegisterPage from "./pages/auth/register.page";
 import ResetPasswordPage from "./pages/auth/reset.password.page";
@@ -8,11 +7,14 @@ import { lookInSession } from "./common/session";
 import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./common/ProtectedRoute";
 import AuthRedirect from "./common/AuthRedirect";
+import DashBoard from "./pages/dashboard";
+import CustomerPage from "./pages/customer.page";
+import ProductPage from "./pages/product.page";
 
 export const UserContext = createContext({});
 
 function App() {
-  const [userAuth, setUserAuth] = useState();
+  const [userAuth, setUserAuth] = useState({});
 
   useEffect(() => {
     let userInSession = lookInSession("user");
@@ -21,11 +23,19 @@ function App() {
       ? setUserAuth(JSON.parse(userInSession))
       : setUserAuth({ access_token: null });
   }, []);
+
   return (
     <UserContext.Provider value={{ userAuth, setUserAuth }}>
       <Routes>
         <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<Navbar />} />
+          <Route path="/" element={<DashBoard />}>
+            <Route path="/" element={<h1>Overview</h1>} />
+            <Route path="/analytics" element={<h1>Analytics</h1>} />
+            <Route path="/orders" element={<h1>Orders</h1>} />
+            <Route path="/products" element={<ProductPage />} />
+            <Route path="/customers" element={<CustomerPage />} />
+            <Route path="/settings" element={<h1>Settings</h1>} />
+          </Route>
         </Route>
 
         <Route

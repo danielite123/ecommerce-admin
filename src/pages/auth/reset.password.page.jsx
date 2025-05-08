@@ -1,6 +1,4 @@
-import InputBox from "../../components/input.components";
-import GoogleLogo from "../../img/google.png";
-import FaceebookLogo from "../../img/facebook.png";
+import { InputBox } from "../../components/input.components";
 import { Link } from "react-router-dom";
 import Design1 from "../../img/login-design.png";
 import Design2 from "../../img/login-design2.png";
