@@ -77,3 +77,40 @@ export const SearchInputBox = ({
     </div>
   );
 };
+
+export const ProductInputBox = ({
+  name,
+  type,
+  id,
+  value,
+  onChange,
+  placeholder,
+  disable,
+  error,
+}) => {
+  return (
+    <div className="relative w-[100%] mb-4">
+      <div className="relative">
+        <input
+          name={name}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          id={id}
+          disabled={disable}
+          className={`product-input-box font-inter ${
+            error ? "border-red-500" : ""
+          }`}
+        />
+      </div>
+
+      {error && (
+        <div className="flex flex-row ml-1 gap-2 mt-1 -mb-3">
+          <i className="fi fi-rr-exclamation text-red-500 text-[11px]"></i>
+          <p className="text-red-500 text-xs">{error}</p>
+        </div>
+      )}
+    </div>
+  );
+};
